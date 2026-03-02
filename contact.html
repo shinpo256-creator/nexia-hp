@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>お問い合わせフォーム</title>
+    <style>
+       /* 全体 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .required-note {
+            color: red;
+            margin-bottom: 20px;
+        }
+       /* フォーム */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .form-group:not(:first-child) label {
+            margin-top: 16px;
+        }
+
+        .required {
+            color: red;
+            margin-left: 4px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+       /* エラー表示 */
+        .error {
+            border: 2px solid red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+
+       /* 住所 */
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            padding: 0 8px;
+            font-weight: bold;
+        }
+
+       /* 送信ボタン */
+
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .form-submit {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .form-submit button {
+            width: auto;
+            min-width: 200px;
+            padding: 12px 40px;
+        }
+
+       /* スマホ微調整 */
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 20px
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>お問い合わせフォーム</h1>
+
+    <!-- 必須項目説明 -->
+     <p class="required-note">*は必須項目です</p>
+
+    <form id="contactForm" action="send.php" method="post">
+
+        <!-- 貴社名 -->
+         <div class="form-group">
+            <label for="company">貴社名</label>
+            <input type="text" id="company" name="company">
+         </div>
+        
+        <!-- 部署名 -->
+         <div class="form-group">
+            <label for="department">部署名</label>
+            <input type="text" id="department" name="department">
+         </div>
+        
+        <!-- 氏名（必須） -->
+         <div class="form-group">
+            <label for="name">
+                氏名<span class="required">*</span>
+            </label>
+            <input type="text" id="name" name="name" data-label="氏名" placeholder="例）佐藤　一郎">
+            <div class="error-message"></div>
+         </div>
+        
+        <!-- メールアドレス（必須） -->
+         <div class="form-group">
+            <label for="email">
+                メールアドレス<span class="required">*</span>
+            </label>
+            <input type="email" id="email" name="email" data-label="メールアドレス" placeholder="例）abcdef12345@kaisha.com">
+            <div class="error-message"></div>
+         </div>
+        
+        <!-- 電話番号（必須） -->
+         <div class="form-group">
+            <label for="tel">
+                電話番号<span class="required">*</span>
+            </label>
+            <input type="tel" id="tel" name="tel" data-label="電話番号" placeholder="例）090-1234-5678">
+            <div class="error-message"></div>
+         </div>
+        
+        <!-- 住所（必須） -->
+         <p>  </p><br>  <!-- 電話番号と住所の間を一行空けたいから。 -->
+         <fieldset>
+            <legend>
+                住所<span class="required">*</span>
+            </legend>
+
+            <!-- 郵便番号 -->
+             <div class="form-group">
+                <label for="zip">郵便番号</label>
+                <input type="text" id="zip" name="zip" data-label="郵便番号" placeholder="例）123-4567">
+                <div class="error-message"></div>
+             </div>
+
+             <!-- 都道府県 -->
+              <div class="form-group">
+                <label for="prefecture">都道府県</label>
+                <select id="prefecture" name="prefecture" data-label="都道府県">
+                    <option value="">選択してください</option>
+                    <option>北海道</option>
+                    <option>青森県</option>
+                    <option>岩手県</option>
+                    <option>宮城県</option>
+                    <option>秋田県</option>
+                    <option>山形県</option>
+                    <option>福島県</option>
+                    <option>茨城県</option>
+                    <option>栃木県</option>
+                    <option>群馬県</option>
+                    <option>埼玉県</option>
+                    <option>千葉県</option>
+                    <option>東京都</option>
+                    <option>神奈川県</option>
+                    <option>新潟県</option>
+                    <option>富山県</option>
+                    <option>石川県</option>
+                    <option>福井県</option>
+                    <option>山梨県</option>
+                    <option>長野県</option>
+                    <option>岐阜県</option>
+                    <option>静岡県</option>
+                    <option>愛知県</option>
+                    <option>三重県</option>
+                    <option>滋賀県</option>
+                    <option>京都府</option>
+                    <option>大阪府</option>
+                    <option>兵庫県</option>
+                    <option>奈良県</option>
+                    <option>和歌山県</option>
+                    <option>鳥取県</option>
+                    <option>島根県</option>
+                    <option>岡山県</option>
+                    <option>広島県</option>
+                    <option>山口県</option>
+                    <option>徳島県</option>
+                    <option>香川県</option>
+                    <option>愛媛県</option>
+                    <option>高知県</option>
+                    <option>福岡県</option>
+                    <option>佐賀県</option>
+                    <option>長崎県</option>
+                    <option>熊本県</option>
+                    <option>大分県</option>
+                    <option>宮崎県</option>
+                    <option>鹿児島県</option>
+                    <option>沖縄県</option>
+                </select>
+                <div class="error-message"></div>
+              </div>
+            
+             <!-- 市区町村・番地 -->
+              <div class="form-group">
+                <label for="address1">市区町村・番地</label>
+                <input type="text" id="address1" name="address1" data-label="市区町村・番地" placeholder="例）千代田区永田町１丁目７ー１">
+                <div class="error-message"></div>
+              </div>
+            
+             <!-- 建物名 -->
+              <div class="form-group">
+                <label for="address2">建物名</label>
+                <input type="text" id="address2" name="address2">
+              </div>
+        
+         </fieldset>
+        
+        <!-- お問い合わせ件名（必須） -->
+         <div class="form-group">
+            <label for="subject">
+                お問い合わせ件名<span class="required">*</span>
+            </label>
+            <input type="text" id="subject" name="subject" data-label="お問い合わせ件名">
+            <div class="error-message"></div>
+         </div>
+        
+        <!-- お問い合わせ内容（必須） -->
+         <div class="form-group">
+            <label for="message">
+                お問い合わせ内容<span class="required">*</span>
+            </label>
+            <textarea id="message" name="message" rows="6" data-label="お問い合わせ内容"></textarea>
+            <div class="error-message"></div>
+         </div>
+        
+        <!-- 送信ボタン -->
+         <div class="form-group form-submit">
+            <button type="submit">送信</button>
+         </div>
+
+    </form>
+
+</div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            const requiredFields = document.querySelectorAll(
+                '[name="name"], [name="email"], [name="tel"], [name="zip"], [name="prefecture"], [name="address1"], [name="subject"], [name="message"]'
+            );
+
+            requiredFields.forEach(field => {
+                const errorMessage = field.nextElementSibling;
+                field.classList.remove("error");
+                errorMessage.textContent = "";
+
+                if (!field.value.trim()) {
+                    field.classList.add("error");
+                    errorMessage.textContent = field.dataset.label + "を入力してください。";
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                alert("送信成功（※実際の送信処理は未実装です）");
+                this.reset();
+            }
+        });
+    </script>
+
+</body>
+</html>
